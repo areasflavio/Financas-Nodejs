@@ -1,41 +1,42 @@
 import { Router } from 'express';
+import { getCustomRepository } from 'typeorm';
 
 import TransactionsRepository from '../repositories/TransactionsRepository';
 import CreateTransactionService from '../services/CreateTransactionService';
+// import DeleteTransactionService from '../services/DeleteTransactionService';
+// import ImportTransactionsService from '../services/ImportTransactionsService';
 
-const transactionRouter = Router();
+const transactionsRouter = Router();
 
-const transactionsRepository = new TransactionsRepository();
+transactionsRouter.get('/', async (request, response) => {
+	const transactionsRepository = getCustomRepository(TransactionsRepository);
 
-transactionRouter.get('/', (request, response) => {
-	try {
-		const transactions = transactionsRepository.all();
-		const balance = transactionsRepository.getBalance();
+	const transactions = await transactionsRepository.find();
 
-		return response.json({ transactions, balance });
-	} catch (err) {
-		return response.status(400).json({ error: err.message });
-	}
+	return response.json(transactions);
 });
 
-transactionRouter.post('/', (request, response) => {
-	try {
-		const { title, value, type } = request.body;
+transactionsRouter.post('/', async (request, response) => {
+	const { title, value, type, category } = request.body;
 
-		const createTransaction = new CreateTransactionService(
-			transactionsRepository,
-		);
+	const createTransaction = new CreateTransactionService();
 
-		const transaction = createTransaction.execute({
-			title,
-			type,
-			value,
-		});
+	const transaction = await createTransaction.execute({
+		category,
+		title,
+		type,
+		value,
+	});
 
-		return response.json(transaction);
-	} catch (err) {
-		return response.status(400).json({ error: err.message });
-	}
+	return response.json(transaction);
 });
 
-export default transactionRouter;
+transactionsRouter.delete('/:id', async (request, response) => {
+	// TODO
+});
+
+transactionsRouter.post('/import', async (request, response) => {
+	// TODO
+});
+
+export default transactionsRouter;
