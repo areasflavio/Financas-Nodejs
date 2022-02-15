@@ -10,6 +10,11 @@ export default async (name = 'default'): Promise<Connection> => {
 				process.env.NODE_ENV === 'test'
 					? 'fmoney_tests'
 					: defaultOptions.database,
+			entities: ['./src/models/*.ts'],
+			migrations: ['./src/database/migrations/*.ts'],
+			cli: {
+				migrationsDir: './src/database/migrations',
+			},
 		}),
 	);
 };
