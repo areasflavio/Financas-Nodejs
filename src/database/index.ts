@@ -1,5 +1,4 @@
 import { createConnection, getConnectionOptions, Connection } from 'typeorm';
-import path from 'path';
 
 export default async (name = 'default'): Promise<Connection> => {
 	const defaultOptions = await getConnectionOptions();
@@ -11,15 +10,6 @@ export default async (name = 'default'): Promise<Connection> => {
 				process.env.NODE_ENV === 'test'
 					? 'fmoney_tests'
 					: defaultOptions.database,
-			entities: [path.resolve(__dirname, '..', 'models', '*')],
-			migrations: [path.resolve(__dirname, 'migrations', '*')],
-			cli: {
-				migrationsDir: [path.resolve(__dirname, 'migrations')],
-			},
-			ssl: {
-				require: true,
-				rejectUnauthorized: false,
-			},
 		}),
 	);
 };
