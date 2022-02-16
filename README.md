@@ -36,7 +36,7 @@ Some key features are:
 
 - Upload CSV files.
 - Manual entry for values.
-- Cards that resume the income, outcome and the final balance.
+- Service that resume the income, outcome and the final balance.
 - Codebase is cover by tests with Jest and supertest.
 
 The application is built using Node.JS with Express framework. The database is
@@ -158,8 +158,7 @@ cd financas-server
 # Install dependencies for the backend
 yarn install
 
-# Copy the .env.example to the .env file and inject your credentials
-cp .env.example .env
+# Use ormconfig.json file to inject your database config
 
 # Make sure that you have a proper database created
 
