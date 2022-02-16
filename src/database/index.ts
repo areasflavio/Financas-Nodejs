@@ -16,6 +16,10 @@ export default async (name = 'default'): Promise<Connection> => {
 			cli: {
 				migrationsDir: [path.resolve(__dirname, 'migrations')],
 			},
+			ssl: {
+				require: true,
+				rejectUnauthorized: false,
+			},
 		}),
 	);
 };
