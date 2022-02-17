@@ -42,29 +42,35 @@ Some key features are:
 The application is built using Node.JS with Express framework. The database is
 the PostgreSQL connected by TypeORM. The entire codebase is written using Typescript.
 
-<!--
 <p align="center">
-  Checkout the <a href=">API Live version</a>
-   hosted on:
+  Checkout the <a href="https://fmoney-server.herokuapp.com">API Live version</a>
+	 with a PostgreSQL database hosted on:
 </p>
 <p align="center">
     <img alt="Heroku" src="https://img.shields.io/badge/heroku-%23430098.svg?&style=for-the-badge&logo=heroku&logoColor=white"/>
 </p>
 
 <p align="center">
-  You also can check the complete <a href="">Application Live version</a>
+  You also can check the complete <a href="https://fmoney.vercel.app">Application Live version</a>
   hosted on:
 </p>
 <p align="center">
     <img alt="Vercel" src="https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"/>
 </p>
--->
 
 <br/>
 
 # :computer: API-Reference
 
 [(Back to top)](#Financas-Server)
+
+### Get welcome message
+
+```http
+  GET /
+```
+
+<br/>
 
 ## Categories
 
@@ -158,7 +164,8 @@ cd financas-server
 # Install dependencies for the backend
 yarn install
 
-# Use ormconfig.json file to inject your database config
+# Copy the .env.example to the .env file and inject your credentials
+cp .env.example .env
 
 # Make sure that you have a proper database created
 
